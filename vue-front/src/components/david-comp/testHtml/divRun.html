@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <img id="car" src="/public/pic2/3081840.png" alt="Car">
+    <button onclick="runAnimation()">按我</button>
+</body>
+<script>
+    function runAnimation() {
+        const car = document.querySelector("#car");
+        car.style.display = "block"; // Make sure the element is visible
+        car.classList.add("animate");
+
+        car.addEventListener("animationend", function () {
+            car.style.display = "none"; // Hide the element after animation ends
+            car.classList.remove("animate"); // Remove the animation class
+        }, { once: true }); // Ensure the event listener is only run once
+    }
+</script>
+<style>
+    #car {
+        display: none;
+        width: 5vw;
+        /* Adjust size as needed */
+        height: 5vh;
+        /* Adjust size as needed */
+        position: absolute;
+        bottom: 0;
+        /* Start at the bottom */
+        right: 0;
+        /* Start at the right */
+    }
+
+    .animate {
+        animation: car 2s forwards;
+        /* Duration of 5 seconds for the animation */
+    }
+
+    @keyframes car {
+        0% {
+            transform: translate(0, 0) rotate3d(0, 1, 0, 180deg);
+            /* Start at the bottom right */
+        }
+
+        30% {
+            transform: translate(-20vw, -40vh)rotate3d(0, 1, 0, 180deg);
+            /* Move to the middle */
+        }
+
+        60% {
+            transform: translate(-20vw, -40vh);
+            /* Turn around at the middle */
+        }
+
+        100% {
+            transform: translate(40vw, -90vh);
+            /* Move to the top right */
+        }
+    }
+</style>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main">
+        aaa
+        <div class="inside animation">
+            <img class="img1" src="\public\pic2\00060507.jpg">
+        </div>
+        <br>
+        <div class="inside animation2">
+            <img class="img2" src="\public\pic2\00079160.jpg">
+        </div>
+        asd
+    </div>
+</body>
+
+<style>
+    .main {
+        margin: auto;
+        width: 600px;
+
+        background-color: azure;
+        margin-block: 20px;
+        align-content: center;
+    }
+
+    .inside {
+        background-color: brown;
+        height: 600px;
+
+    }
+
+    .animation {
+        background-color: aquamarine !important;
+        height: 300px;
+
+    }
+
+    .animation2 {
+        background-color: aqua !important;
+        height: 300px;
+        opacity: 0.5;
+    }
+
+    .img1 {
+        animation: a1 infinite 20s;
+        /* max-width: 600px;
+        max-height: 300px; */
+    }
+
+    .img2 {
+        align-self: flex-end;
+        animation: a2 infinite 1.5s;
+        max-width: 600px;
+        max-height: 300px;
+    }
+
+    @keyframes a1 {
+        10% {
+            background-color: black;
+            transform: translate3d(-20px, 0px, 0px);
+        }
+
+        50% {
+            transform: rotate3d(0, 1, 0, 90deg);
+        }
+    }
+
+    @keyframes a {
+        to {
+            background-color: black;
+
+            transform: rotate3d(0, 1, 0, 90deg);
+        }
+    }
+</style>
+
+</html>

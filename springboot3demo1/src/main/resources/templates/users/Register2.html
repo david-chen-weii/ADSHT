@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>註冊會員資料二</title>
+</head>
+<body>
+<h1>註冊個人資料</h1>
+<form th:method="post" th:action="@{/users/registerpost}">
+
+姓名<input name="name" required >
+<br>
+<label for="gender">性別:</label>
+        <select name="gender" id="gender" required>
+          <option value="">請選擇</option>
+            <option value="MALE">男</option>
+            <option value="FEMALE">女</option>
+            <option value="OTHER">其他</option>
+        </select>
+ <br>       
+身分證<input name="id_number" required >
+<br>
+手機<input name="phone" required >
+<br>
+電子信箱<input name="email" required >
+<br>
+生日：<input type="date" name="birthday" required>
+<br>
+地址<input name="address" required >
+<br>
+備用信箱<input name="backupemail" required >
+<br>
+
+
+<input type="submit" value="確定">
+</form>
+
+<div th:text="${okMsg}"></div>
+</body>
+</html>

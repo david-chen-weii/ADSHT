@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <script src="https://www.unpkg.com/axios@1.7.2/dist/axios.min.js"></script>
+    <script src="https://www.unpkg.com/sweetalert2@11.12.0/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript">
+        function clearForm() {
+            var inputs = document.getElementsByTagName("input");
+            for(var i=0; i<inputs.length; i++) {
+                if(inputs[i].type=="text") {
+                    inputs[i].value="";
+                }
+            }
+        }
+
+        function callUsername(){
+            let name = document.querySelector("input[name='username']").value;
+            if(name){
+                axios.get("http://localhost:8080/ajax/pages/users/name/"+name).then(
+                    function(response){
+                        console.log("response",response);
+                        let node = document.querySelector("#error");
+                        node.innerHTML = response.data.message;
+                    }
+
+                ).catch(function(error){
+                    console.log("error",error);
+                }
+
+                );
+            }
+        }
+
+        function create(){
+
+
+            Swal.fire({
+                    text:"runnig....",
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                })
+                let username = document.querySelector("input[name='username']").value;
+                let name = document.querySelector("input[name='name']").value;
+                let password = document.querySelector("input[name='password']").value;
+                let gender = document.querySelector("input[name='gender']").value;
+                let id_number = document.querySelector("input[name='id_number']").value;
+                let email = document.querySelector("input[name='email']").value;
+                let phone = document.querySelector("input[name='phone']").value;
+                let birthday = document.querySelector("input[name='birthday']").value;
+                let address = document.querySelector("input[name='address']").value;
+                let backupemail = document.querySelector("input[name='backupemail']").value;
+
+                if(username == ""){username = null;}
+                if(password == ""){password = null;}
+                if(name == ""){name = null;}
+                if(gender == ""){gender = null;}
+                if(id_number == ""){id_number = null;}
+                if(email == ""){email = null;}
+                if(phone == ""){phone = null;}
+                if(birthday == ""){birthday = null;}
+                if(address == ""){address = null;}
+                if(backupemail   == ""){backupemail   = null;}
+
+                let request = {
+                                "username":username,
+                                "password":password,
+                                "name":name,
+                                "gender":gender,
+                                "id_number":id_number,
+                                "email":email,
+                                "phone":phone,
+                                "birthday":birthday,
+                                "address":address,
+                                "backupemail":backupemail
+                                }
+
+
+                console.log("create");
+                axios.post("http://localhost:8080/ajax/pages/users",request).then(
+                    function(response){
+
+                    console.log("success",response)
+
+                    if(response.data.success){
+                        Swal.fire({
+                        icon:"success",
+                        text: response.data.message,
+                    })
+                    }else{
+                        Swal.fire({
+                        icon:"warning",
+                        text: response.data.message,
+                    })
+
+
+                    }
+
+                
+                })
+                .catch(
+                function(error){
+                    console.log("fail",error)
+                    Swal.fire({
+                        icon:"error",
+                        text: error.message,
+                    })
+
+
+                })
+                .finally(console.log("finally"));
+        } 
+
+        function deleted(){
+            Swal.fire({
+                text: "確定？",
+                icon: "question",
+                showCancelButton: true,
+                allowOutsideClick: false,
+
+            }).then(function(result) {
+                console.log("result", result)
+                if(result.isConfirmed) {
+                    Swal.fire({
+                    text:"runnig....",
+                    allowOutsideClick: false,
+                    showConfirmButton: false
+                    })
+                    let id = document.querySelector("input[name='id']").value;
+
+                    if(id){
+                        axios.delete("http://localhost:8080/ajax/pages/products/"+id).then(
+                            function(response){
+                                console.log("success",response)
+                            if(response.data.success){
+                                Swal.fire({
+                                icon:"success",
+                                text: response.data.message,
+                                }).then(function(){
+                                    clearForm();
+                                })
+                            }else{
+                                Swal.fire({
+                                icon:"warning",
+                                text: response.data.message,
+                                })
+                            }    
+
+                    })
+                        .catch(
+                            function(error){
+                                console.log("fail",error)
+                                Swal.fire({icon:"error",
+                                text: error.message,
+                                })                          
+                            })
+                                .finally(console.log("finally"));
+                    }
+                    
+                    
+                    console.log("確定");
+                }
+            });
+
+
+        }
+
+        function dofocus(){
+            let node = document.querySelector("#error");
+            node.innerHTML = "";
+        }
+
+
+    </script>
+</head>
+<body>
+    <h3>會員註冊</h3>
+
+    <h6 style="color: red;">**必填資料</h6>
+    <table>
+        <tr>
+            <td>姓名 : </td>
+            <td><input type="text" name="name"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>帳號 :** </td>
+            <td><input type="text" name="username" onfocus="dofocus()" onblur="callUsername()"
+                
+                ></td>
+            <td><span id="error" class="error"></span></td>
+        </tr>
+    
+        <tr>
+            <td>密碼 :** </td>
+            <td><input type="text" name="password"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>生日 : </td>
+            <td><input type="text" name="birthday"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>性別 : </td>
+            <td><input type="text" name="gender"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>身分證 : </td>
+            <td><input type="text" name="id_number"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>E-mail :** </td>
+            <td><input type="text" name="email"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>電話 : </td>
+            <td><input type="text" name="phone"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>地址 : </td>
+            <td><input type="text" name="address"></td>
+            <td><span class="error"></span></td>
+        </tr>
+        <tr>
+            <td>備用E-mail : </td>
+            <td><input type="text" name="backupemail"></td>
+            <td><span class="error"></span></td>
+        </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <tr>
+            <td>
+                <button type="button" onclick="create()">Insert</button>
+                <button type="button">Update</button>
+            </td>
+            <td>
+                <button type="button" onclick="deleted()">Delete</button>
+                <button type="button">Select</button>
+                <input type="button" value="Clear" onclick="clearForm()">
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>

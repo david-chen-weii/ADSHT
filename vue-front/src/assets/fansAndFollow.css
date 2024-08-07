@@ -1,0 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca&family=Poppins:wght@400;600&display=swap");
+
+/* 頁面2的原有樣式 */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    /* 確保彈出視窗在最上層 */
+}
+
+.modal-content {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(220, 219, 224);
+    padding: 20px;
+    border-radius: 10px;
+    width: 500px;
+    max-width: 80%;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* 添加頁面1的樣式 */
+.username-container {
+    font-family: Poppins, sans-serif;
+    width: 450px;
+    height: 55px;
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.row {
+    width: 100%;
+    min-height: 20vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    /* 修改這行 */
+    align-items: center;
+}
+
+.profile-container {
+    display: flex;
+    gap: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-description {
+    width: 200px;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.5;
+    cursor: pointer;
+}
+
+.profile-img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+}
+
+.profile-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-title {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.username {
+    color: #4c4c55;
+    margin: 0;
+}
+
+.menu-bar {
+    display: flex;
+    align-items: center;
+}
+
+.menu-bar i {
+    font-size: 25px;
+    color: white;
+}
+
+.menu-bar i:hover {
+    cursor: pointer;
+}
